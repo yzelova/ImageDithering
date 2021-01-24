@@ -7,7 +7,7 @@ data Rgb = Rgb
     green :: Word8,
     blue :: Word8
   }
-  deriving (Read, Show)
+  deriving (Read, Show, Eq)
 
 data Image = Image
   { format :: Int,
@@ -16,7 +16,7 @@ data Image = Image
     content :: [[Rgb]],
     colors :: Int
   }
-  deriving (Read, Show)
+  deriving (Read, Show, Eq)
 
 rgbToGs :: Rgb -> Rgb
 rgbToGs rgb =

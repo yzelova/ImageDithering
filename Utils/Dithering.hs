@@ -1,7 +1,7 @@
 module Utils.Dithering where
 
-import Data.Word ( Word8 )
-import Utils.Image ( Rgb(..) )
+import Data.Word (Word8)
+import Utils.Image (Rgb (..))
 
 isOutOfBound :: Int -> Int -> Int -> Int -> Bool
 isOutOfBound w h row col
@@ -27,7 +27,7 @@ setPixelDithering w h row col diffusion divisor (errorR, errorG, errorB) matrix
         newRed = r + round (toRational (fromIntegral errorR * diffusion) / toRational divisor)
         newGreen = g + round (toRational (fromIntegral errorG * diffusion) / toRational divisor)
         newBlue = b + round (toRational (fromIntegral errorB * diffusion) / toRational divisor)
-        closestRed 
+        closestRed
           | newRed > 255 = 0
           | newRed < 0 = 255
           | newRed <= 127 = 0
@@ -43,7 +43,6 @@ setPixelDithering w h row col diffusion divisor (errorR, errorG, errorB) matrix
           | newBlue <= 127 = 0
           | otherwise = 255
      in setPixel (Rgb closestRed closestGreen closestBlue) (row, col) matrix
-
 setPixelOrderedDithering :: Int -> Int -> Int -> Int -> [[Int]] -> Int -> [[Rgb]] -> [[Rgb]]
 setPixelOrderedDithering w h row col m n matrix
   | isOutOfBound w h row col = matrix
@@ -54,10 +53,10 @@ setPixelOrderedDithering w h row col m n matrix
         b = blue pixel
         mX = row `mod` n
         mY = col `mod` n
-        newRed = r + round (255*(toRational (m !! mX !! mY) - 0.5))
-        newGreen = g + round (255*(toRational (m !! mX !! mY) - 0.5))
-        newBlue = b + round (255*(toRational (m !! mX !! mY) - 0.5))
-        closestRed 
+        newRed = r + round (255 * (toRational (m !! mX !! mY) - 0.5))
+        newGreen = g + round (255 * (toRational (m !! mX !! mY) - 0.5))
+        newBlue = b + round (255 * (toRational (m !! mX !! mY) - 0.5))
+        closestRed
           | newRed > 255 = 255
           | newRed < 0 = 0
           | newRed <= 127 = 0

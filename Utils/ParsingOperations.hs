@@ -1,15 +1,28 @@
 module Utils.ParsingOperations where
-import Data.ByteString as BS ( ByteString, empty, head, tail )
+
+import Data.ByteString as BS (ByteString, empty, head, tail)
 import Data.Word8 as W8
-    ( Word8, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, isSpace )
+  ( Word8,
+    isSpace,
+    _0,
+    _1,
+    _2,
+    _3,
+    _4,
+    _5,
+    _6,
+    _7,
+    _8,
+    _9,
+  )
 
 trimWhiteSpace :: ByteString -> ByteString
 trimWhiteSpace bStr
   | BS.empty == bStr = bStr
-  | W8.isSpace $ BS.head bStr  = trimWhiteSpace $ BS.tail bStr
+  | W8.isSpace $ BS.head bStr = trimWhiteSpace $ BS.tail bStr
   | otherwise = bStr
 
-skipWhiteSpace :: ByteString -> ByteString 
+skipWhiteSpace :: ByteString -> ByteString
 skipWhiteSpace bStr
   | BS.empty == bStr = bStr
   | W8.isSpace $ BS.head bStr = BS.tail bStr

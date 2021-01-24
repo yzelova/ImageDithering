@@ -60,6 +60,7 @@ executeBayer8 input output = do
   image <- loadImage input
   let newImage = orderedDithering8 (grayscale image)
   saveImage output newImage
+
 executeBayer4 :: FilePath -> FilePath -> IO ()
 executeBayer4 input output = do
   image <- loadImage input
