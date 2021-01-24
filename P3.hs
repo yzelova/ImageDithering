@@ -1,8 +1,8 @@
 module P3 where
 
-import Data.ByteString as BS
-import Image
-import ParsingOperations
+import Data.ByteString as BS ( ByteString, empty )
+import Image ( Rgb(..) )
+import ParsingOperations ( parseNumber, trimWhiteSpace )
 
 parsePlainTextRGB :: Int -> Int -> Int -> ByteString -> [[Rgb]]
 parsePlainTextRGB width height colors bStr =

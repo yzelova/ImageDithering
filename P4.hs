@@ -1,8 +1,8 @@
 module P4 where
 
-import Data.ByteString as BS
-import Data.Word
-import Image
+import Data.ByteString as BS ( ByteString, pack, unpack )
+import Data.Word ( Word8 )
+import Image ( Rgb(..) )
 
 getNumOfBits :: Int -> Int
 getNumOfBits num = count

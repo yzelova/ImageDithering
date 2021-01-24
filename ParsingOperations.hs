@@ -1,6 +1,7 @@
 module ParsingOperations where
-import Data.ByteString as BS
+import Data.ByteString as BS ( ByteString, empty, head, tail )
 import Data.Word8 as W8
+    ( Word8, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, isSpace )
 
 trimWhiteSpace :: ByteString -> ByteString
 trimWhiteSpace bStr

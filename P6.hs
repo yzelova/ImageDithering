@@ -1,8 +1,8 @@
 module P6 where
 
-import Data.ByteString as BS
-import Data.Word
-import Image
+import Data.ByteString as BS ( ByteString, pack, unpack )
+import Data.Word ( Word8 )
+import Image ( Rgb(..) )
 
 parseBinaryRGB :: Int -> Int -> Int -> ByteString -> [[Rgb]]
 parseBinaryRGB width height colors bStr =

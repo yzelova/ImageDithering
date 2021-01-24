@@ -1,7 +1,7 @@
 module P1 where
-import Image
-import Data.ByteString as BS
-import ParsingOperations
+import Image ( Rgb(..) )
+import Data.ByteString as BS ( ByteString, empty )
+import ParsingOperations ( parseNumber, trimWhiteSpace )
 
 parsePlainTextBlackWhite :: Int -> Int -> ByteString -> [[Rgb]]
 parsePlainTextBlackWhite width height bStr =

@@ -1,9 +1,9 @@
 module P5 where
 
-import Data.ByteString as BS
-import Data.Word
-import Data.Word8
-import Image
+import Data.ByteString as BS ( ByteString, pack, unpack )
+import Data.Word ( Word8 )
+import Data.Word8 ( Word8, _lf )
+import Image ( Rgb(..) )
 
 parseBinaryGrayscale :: Int -> Int -> Int -> ByteString -> [[Rgb]]
 parseBinaryGrayscale width height colors bStr =
