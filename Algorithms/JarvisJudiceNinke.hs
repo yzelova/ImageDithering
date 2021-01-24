@@ -1,4 +1,4 @@
-module JarvisJudiceNinke where
+module Algorithms.JarvisJudiceNinke where
 import Dithering ( setPixel, setPixelDithering )
 import FileOperations ( loadImage, saveImage )
 import Image ( Image(..), Rgb(..), grayscale )

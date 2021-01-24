@@ -4,12 +4,12 @@ import Data.ByteString as BS
     ( ByteString, empty, appendFile, head, readFile, tail )
 import Data.Word8 as W8 ( _1, _6, _P )
 import Image ( Image(..) )
-import P1 ( parsePlainTextBlackWhite, toStringP1 )
-import P2 ( parsePlainTextGrayscale, toStringP2 )
-import P3 ( parsePlainTextRGB, toStringP3 )
-import P4 ( parseBinaryBlackWhite, toByteStringP4 )
-import P5 ( parseBinaryGrayscale, toByteStringP5 )
-import P6 ( parseBinaryRGB, toByteStringP6 )
+import FormatsParsers.P1 ( parsePlainTextBlackWhite, toStringP1 )
+import FormatsParsers.P2 ( parsePlainTextGrayscale, toStringP2 )
+import FormatsParsers.P3 ( parsePlainTextRGB, toStringP3 )
+import FormatsParsers.P4 ( parseBinaryBlackWhite, toByteStringP4 )
+import FormatsParsers.P5 ( parseBinaryGrayscale, toByteStringP5 )
+import FormatsParsers.P6 ( parseBinaryRGB, toByteStringP6 )
 import ParsingOperations
   ( parseNumber,
     skipWhiteSpace,

@@ -1,4 +1,4 @@
-module P5 where
+module FormatsParsers.P5 where
 
 import Data.ByteString as BS ( ByteString, pack, unpack )
 import Data.Word ( Word8 )

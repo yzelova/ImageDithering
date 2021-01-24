@@ -1,4 +1,4 @@
-module Sierra4 where
+module Algorithms.Sierra4 where
 import Dithering ( setPixel, setPixelDithering )
 import FileOperations ( loadImage, saveImage )
 import Image ( Image(..), Rgb(..), grayscale )

@@ -1,4 +1,4 @@
-module OrderedDithering where
+module Algorithms.OrderedDithering where
 import Dithering ( setPixelOrderedDithering )
 import FileOperations ( loadImage, saveImage )
 import Image ( Image(..), Rgb, grayscale )

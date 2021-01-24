@@ -1,4 +1,4 @@
-module Atkinson where
+module Algorithms.Atkinson where
 import Dithering ( setPixel, setPixelDithering )
 import FileOperations ( loadImage, saveImage )
 import Image ( Image(..), Rgb(..), grayscale )

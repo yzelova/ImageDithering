@@ -1,4 +1,4 @@
-module P3 where
+module FormatsParsers.P3 where
 
 import Data.ByteString as BS ( ByteString, empty )
 import Image ( Rgb(..) )

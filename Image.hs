@@ -1,22 +1,22 @@
 module Image where
 
-import Data.Word ( Word8 )
-
+import Data.Word (Word8)
 
 data Rgb = Rgb
   { red :: Word8,
     green :: Word8,
     blue :: Word8
-  } deriving (Read, Show)
+  }
+  deriving (Read, Show)
 
-data Image = Image 
-  { format :: Int, 
-    width::Int,
-    height::Int,
-    content::[[Rgb]],
-    colors::Int
-  } deriving (Read, Show)
-
+data Image = Image
+  { format :: Int,
+    width :: Int,
+    height :: Int,
+    content :: [[Rgb]],
+    colors :: Int
+  }
+  deriving (Read, Show)
 
 rgbToGs :: Rgb -> Rgb
 rgbToGs rgb =
@@ -29,5 +29,3 @@ grayscaleHelper = Prelude.map $ Prelude.map rgbToGs
 
 grayscale :: Image -> Image
 grayscale img = Image (format img) (width img) (height img) (grayscaleHelper $ content img) (colors img)
-
-

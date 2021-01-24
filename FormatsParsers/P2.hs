@@ -1,10 +1,10 @@
-module P1 where
-import Image ( Rgb(..) )
+module FormatsParsers.P2 where
 import Data.ByteString as BS ( ByteString, empty )
+import Image ( Rgb(..) )
 import ParsingOperations ( parseNumber, trimWhiteSpace )
 
-parsePlainTextBlackWhite :: Int -> Int -> ByteString -> [[Rgb]]
-parsePlainTextBlackWhite width height bStr =
+parsePlainTextGrayscale :: Int -> Int -> Int -> ByteString -> [[Rgb]]
+parsePlainTextGrayscale width height colors bStr =
     let getRow :: Int -> ByteString -> ([Rgb], ByteString)
         getRow count bStr 
             | count == width = ([], bStr)
@@ -12,8 +12,7 @@ parsePlainTextBlackWhite width height bStr =
             | otherwise = 
                 let (number, rest) = parseNumber bStr
                     rgb 
-                        | number == 0 = Rgb 255 255 255
-                        | number == 1 = Rgb 0 0 0
+                        | fromIntegral number <= colors && number >= 0 = Rgb (fromIntegral number) (fromIntegral number) (fromIntegral number)
                         | otherwise = error "Invalid color value"
                     (restRow, restBStr) = getRow (count + 1) rest
                 in (rgb : restRow, restBStr)
@@ -28,12 +27,11 @@ parsePlainTextBlackWhite width height bStr =
             | otherwise = getRows bStr
     in rows
 
-toStringP1 :: [[Rgb]] -> String 
-toStringP1 rgb =
+toStringP2 :: [[Rgb]] -> String 
+toStringP2 rgb =
     let rgbToString :: Rgb -> String 
         rgbToString rgb 
-            | red rgb == 255 && green rgb == 255 && blue rgb == 255 = "0\n"
-            | red rgb == 0 && green rgb == 0 && blue rgb == 0 = "1\n"
+            | red rgb == green rgb &&  green rgb == blue rgb = show (red rgb) ++ "\n"
             | otherwise = error "Invalid format"
         toString :: [[Rgb]] -> [[String]]
         toString = Prelude.map $ Prelude.map rgbToString

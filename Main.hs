@@ -1,17 +1,17 @@
 module Main where
 
-import Atkinson (execute)
-import Burkes (execute)
-import Control.Exception as Exc
+import Algorithms.Atkinson (execute)
+import Algorithms.Burkes (execute)
+import Algorithms.FalseFloydSteinberg (execute)
+import Algorithms.FloydSteinsberg (execute)
+import Algorithms.JarvisJudiceNinke (execute)
+import Algorithms.OrderedDithering (executeBayer4, executeBayer8)
+import Algorithms.Sierra16 (execute)
+import Algorithms.Sierra32 (execute)
+import Algorithms.Sierra4 (execute)
+import Algorithms.Stucki (execute)
+import Control.Exception as Exc ( SomeException, catch )
 import Control.Monad (unless)
-import FalseFloydSteinberg (execute)
-import FloydSteinsberg (execute)
-import JarvisJudiceNinke (execute)
-import OrderedDithering (executeBayer4, executeBayer8)
-import Sierra16 (execute)
-import Sierra32 (execute)
-import Sierra4 (execute)
-import Stucki (execute)
 
 algorithmNames :: String
 algorithmNames = "floydSteinberg\nfalseFloydSteinberg\njarvisJudiceNinke\nstucki\natkinson\nburkes\nsierra32\nsierra16\nsierra4\nbayer4\nbayer8\n"
@@ -23,17 +23,17 @@ helper str =
       outputFileName = wordsStr !! 1
       algorithm = wordsStr !! 2
       exec
-        | algorithm == "floydSteinberg" = FloydSteinsberg.execute inputFileName outputFileName
-        | algorithm == "falseFloydSteinberg" = FalseFloydSteinberg.execute inputFileName outputFileName
-        | algorithm == "jarvisJusiceNinke" = JarvisJudiceNinke.execute inputFileName outputFileName
-        | algorithm == "stucki" = Stucki.execute inputFileName outputFileName
-        | algorithm == "atkinson" = Atkinson.execute inputFileName outputFileName
-        | algorithm == "burkes" = Burkes.execute inputFileName outputFileName
-        | algorithm == "sierra32" = Sierra32.execute inputFileName outputFileName
-        | algorithm == "sierra16" = Sierra16.execute inputFileName outputFileName
-        | algorithm == "sierra4" = Sierra4.execute inputFileName outputFileName
-        | algorithm == "bayer4" = OrderedDithering.executeBayer4 inputFileName outputFileName
-        | algorithm == "bayer8" = OrderedDithering.executeBayer8 inputFileName outputFileName
+        | algorithm == "floydSteinberg" = Algorithms.FloydSteinsberg.execute inputFileName outputFileName
+        | algorithm == "falseFloydSteinberg" = Algorithms.FalseFloydSteinberg.execute inputFileName outputFileName
+        | algorithm == "jarvisJusiceNinke" = Algorithms.JarvisJudiceNinke.execute inputFileName outputFileName
+        | algorithm == "stucki" = Algorithms.Stucki.execute inputFileName outputFileName
+        | algorithm == "atkinson" = Algorithms.Atkinson.execute inputFileName outputFileName
+        | algorithm == "burkes" = Algorithms.Burkes.execute inputFileName outputFileName
+        | algorithm == "sierra32" = Algorithms.Sierra32.execute inputFileName outputFileName
+        | algorithm == "sierra16" = Algorithms.Sierra16.execute inputFileName outputFileName
+        | algorithm == "sierra4" = Algorithms.Sierra4.execute inputFileName outputFileName
+        | algorithm == "bayer4" = Algorithms.OrderedDithering.executeBayer4 inputFileName outputFileName
+        | algorithm == "bayer8" = Algorithms.OrderedDithering.executeBayer8 inputFileName outputFileName
         | otherwise = error "Invalid command"
    in exec
 
@@ -50,7 +50,7 @@ catchAny :: IO a -> (SomeException -> IO a) -> IO a
 catchAny = Exc.catch
 
 handler :: SomeException -> IO ()
-handler _ = putStrLn "An Error Occured" 
+handler _ = putStrLn "An Error Occured"
 
 processInputUser :: IO ()
 processInputUser = do

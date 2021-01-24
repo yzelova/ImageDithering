@@ -1,4 +1,4 @@
-module Stucki where
+module Algorithms.Stucki where
 import Dithering ( setPixel, setPixelDithering )
 import FileOperations ( loadImage, saveImage )
 import Image ( Image(..), Rgb(..), grayscale )
