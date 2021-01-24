@@ -1,4 +1,4 @@
-module Image where
+module Utils.Image where
 
 import Data.Word (Word8)
 

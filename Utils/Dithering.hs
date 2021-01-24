@@ -1,7 +1,7 @@
-module Dithering where
+module Utils.Dithering where
 
 import Data.Word ( Word8 )
-import Image ( Rgb(..) )
+import Utils.Image ( Rgb(..) )
 
 isOutOfBound :: Int -> Int -> Int -> Int -> Bool
 isOutOfBound w h row col

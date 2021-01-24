@@ -1,9 +1,9 @@
 module FormatsParsers.P5 where
 
-import Data.ByteString as BS ( ByteString, pack, unpack )
-import Data.Word ( Word8 )
-import Data.Word8 ( Word8, _lf )
-import Image ( Rgb(..) )
+import Data.ByteString as BS (ByteString, pack, unpack)
+import Data.Word (Word8)
+import Data.Word8 (Word8, _lf)
+import Utils.Image (Rgb (..))
 
 parseBinaryGrayscale :: Int -> Int -> Int -> ByteString -> [[Rgb]]
 parseBinaryGrayscale width height colors bStr =
@@ -25,7 +25,7 @@ parseBinaryGrayscale width height colors bStr =
         | otherwise = toRgb $ getRows bytes
    in rgb
 
-toByteStringP5 :: [[Rgb]] -> ByteString 
+toByteStringP5 :: [[Rgb]] -> ByteString
 toByteStringP5 rgb =
   let toWord8 :: Rgb -> Word8
       toWord8 rgb

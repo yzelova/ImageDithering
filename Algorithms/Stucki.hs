@@ -1,7 +1,8 @@
 module Algorithms.Stucki where
-import Dithering ( setPixel, setPixelDithering )
-import FileOperations ( loadImage, saveImage )
-import Image ( Image(..), Rgb(..), grayscale )
+
+import Utils.Dithering (setPixel, setPixelDithering)
+import Utils.FileOperations (loadImage, saveImage)
+import Utils.Image (Image (..), Rgb (..), grayscale)
 
 applyStucki :: Int -> Int -> Int -> Int -> [[Rgb]] -> [[Rgb]]
 applyStucki w h row col rgb
@@ -39,12 +40,12 @@ applyStucki w h row col rgb
         newRow
           | col == w - 1 = row + 1
           | otherwise = row
-    in applyStucki w h newRow newCol matrixWithError12
-    
+     in applyStucki w h newRow newCol matrixWithError12
+
 stucki :: Image -> Image
 stucki img = Image (format img) (width img) (height img) (applyStucki (width img) (height img) 0 0 (content img)) (colors img)
 
-execute :: FilePath -> FilePath  -> IO ()
+execute :: FilePath -> FilePath -> IO ()
 execute input output = do
   image <- loadImage input
   let newImage = stucki (grayscale image)

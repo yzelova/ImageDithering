@@ -1,8 +1,8 @@
 module FormatsParsers.P6 where
 
-import Data.ByteString as BS ( ByteString, pack, unpack )
-import Data.Word ( Word8 )
-import Image ( Rgb(..) )
+import Data.ByteString as BS (ByteString, pack, unpack)
+import Data.Word (Word8)
+import Utils.Image (Rgb (..))
 
 parseBinaryRGB :: Int -> Int -> Int -> ByteString -> [[Rgb]]
 parseBinaryRGB width height colors bStr =

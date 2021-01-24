@@ -1,8 +1,8 @@
 module FormatsParsers.P3 where
 
-import Data.ByteString as BS ( ByteString, empty )
-import Image ( Rgb(..) )
-import ParsingOperations ( parseNumber, trimWhiteSpace )
+import Data.ByteString as BS (ByteString, empty)
+import Utils.Image (Rgb (..))
+import Utils.ParsingOperations (parseNumber, trimWhiteSpace)
 
 parsePlainTextRGB :: Int -> Int -> Int -> ByteString -> [[Rgb]]
 parsePlainTextRGB width height colors bStr =

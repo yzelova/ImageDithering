@@ -1,7 +1,8 @@
 module Algorithms.Atkinson where
-import Dithering ( setPixel, setPixelDithering )
-import FileOperations ( loadImage, saveImage )
-import Image ( Image(..), Rgb(..), grayscale )
+
+import Utils.Dithering (setPixel, setPixelDithering)
+import Utils.FileOperations (loadImage, saveImage)
+import Utils.Image (Image (..), Rgb (..), grayscale)
 
 applyAtkinson :: Int -> Int -> Int -> Int -> [[Rgb]] -> [[Rgb]]
 applyAtkinson w h row col rgb
@@ -33,12 +34,12 @@ applyAtkinson w h row col rgb
         newRow
           | col == w - 1 = row + 1
           | otherwise = row
-    in applyAtkinson w h newRow newCol matrixWithError6
-    
+     in applyAtkinson w h newRow newCol matrixWithError6
+
 atkinson :: Image -> Image
 atkinson img = Image (format img) (width img) (height img) (applyAtkinson (width img) (height img) 0 0 (content img)) (colors img)
 
-execute :: FilePath -> FilePath  -> IO ()
+execute :: FilePath -> FilePath -> IO ()
 execute input output = do
   image <- loadImage input
   let newImage = atkinson (grayscale image)

@@ -1,7 +1,8 @@
 module Algorithms.FalseFloydSteinberg where
-import Dithering ( setPixel, setPixelDithering )
-import FileOperations ( loadImage, saveImage )
-import Image ( Image(..), Rgb(..), grayscale )
+
+import Utils.Dithering (setPixel, setPixelDithering)
+import Utils.FileOperations (loadImage, saveImage)
+import Utils.Image (Image (..), Rgb (..), grayscale)
 
 applyFalseFloydSteinsberg :: Int -> Int -> Int -> Int -> [[Rgb]] -> [[Rgb]]
 applyFalseFloydSteinsberg w h row col rgb
@@ -30,12 +31,12 @@ applyFalseFloydSteinsberg w h row col rgb
         newRow
           | col == w - 1 = row + 1
           | otherwise = row
-    in applyFalseFloydSteinsberg w h newRow newCol matrixWithError3
+     in applyFalseFloydSteinsberg w h newRow newCol matrixWithError3
 
 falseFloydSteinberg :: Image -> Image
 falseFloydSteinberg img = Image (format img) (width img) (height img) (applyFalseFloydSteinsberg (width img) (height img) 0 0 (content img)) (colors img)
 
-execute :: FilePath -> FilePath  -> IO ()
+execute :: FilePath -> FilePath -> IO ()
 execute input output = do
   image <- loadImage input
   let newImage = falseFloydSteinberg (grayscale image)

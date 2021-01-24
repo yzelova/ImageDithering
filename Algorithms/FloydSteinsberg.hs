@@ -1,8 +1,8 @@
 module Algorithms.FloydSteinsberg where
-import Dithering ( setPixel, setPixelDithering )
-import FileOperations ( loadImage, saveImage )
-import Image ( Image(..), Rgb(..), grayscale )
 
+import Utils.Dithering (setPixel, setPixelDithering)
+import Utils.FileOperations (loadImage, saveImage)
+import Utils.Image (Image (..), Rgb (..), grayscale)
 
 applyFloydSteinsberg :: Int -> Int -> Int -> Int -> [[Rgb]] -> [[Rgb]]
 applyFloydSteinsberg w h row col rgb
@@ -32,12 +32,12 @@ applyFloydSteinsberg w h row col rgb
         newRow
           | col == w - 1 = row + 1
           | otherwise = row
-    in applyFloydSteinsberg w h newRow newCol matrixWithError4
+     in applyFloydSteinsberg w h newRow newCol matrixWithError4
 
 floydSteinberg :: Image -> Image
 floydSteinberg img = Image (format img) (width img) (height img) (applyFloydSteinsberg (width img) (height img) 0 0 (content img)) (colors img)
 
-execute :: FilePath -> FilePath  -> IO ()
+execute :: FilePath -> FilePath -> IO ()
 execute input output = do
   image <- loadImage input
   let newImage = floydSteinberg (grayscale image)

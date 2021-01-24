@@ -1,16 +1,16 @@
-module FileOperations where
+module Utils.FileOperations where
 
 import Data.ByteString as BS
     ( ByteString, empty, appendFile, head, readFile, tail )
 import Data.Word8 as W8 ( _1, _6, _P )
-import Image ( Image(..) )
+import Utils.Image ( Image(..) )
 import FormatsParsers.P1 ( parsePlainTextBlackWhite, toStringP1 )
 import FormatsParsers.P2 ( parsePlainTextGrayscale, toStringP2 )
 import FormatsParsers.P3 ( parsePlainTextRGB, toStringP3 )
 import FormatsParsers.P4 ( parseBinaryBlackWhite, toByteStringP4 )
 import FormatsParsers.P5 ( parseBinaryGrayscale, toByteStringP5 )
 import FormatsParsers.P6 ( parseBinaryRGB, toByteStringP6 )
-import ParsingOperations
+import Utils.ParsingOperations
   ( parseNumber,
     skipWhiteSpace,
     trimWhiteSpace,
