@@ -5,9 +5,9 @@
 3. The supported commands are showed when starting the application.
 
 ## Tests
-> Install the [HUnit](https://hackage.haskell.org/package/HUnit) library
-> `ghci Tests\RunTests.hs`
-> `main`
+1. Install the [HUnit](https://hackage.haskell.org/package/HUnit) library
+2. `ghci Tests\RunTests.hs`
+3. `main`
 
 Only 1 algorithm is currently being tested, since all algorithms are implemented in relatively the same way. Dithering algorithms have more specific results with bigger Image objects. Calculating 1 algorithm's effect on a given image is a hard task to do by hand, so unit tests would be more prone to have errors themselves, rather than finding ones in the code. In this case, more efficient testing is done by applying the algorithms to images and visualising the results with an image viewer.
 
