@@ -27,3 +27,14 @@ parsePlainTextBlackWhite width height bStr =
             | Prelude.length  (getRows bStr) /= height = error "Invalid format"
             | otherwise = getRows bStr
     in rows
+
+toStringP1 :: [[Rgb]] -> String 
+toStringP1 rgb =
+    let rgbToString :: Rgb -> String 
+        rgbToString rgb 
+            | red rgb == 255 && green rgb == 255 && blue rgb == 255 = "0\n"
+            | red rgb == 0 && green rgb == 0 && blue rgb == 0 = "1\n"
+            | otherwise = error "Invalid format"
+        toString :: [[Rgb]] -> [[String]]
+        toString = Prelude.map $ Prelude.map rgbToString
+    in Prelude.concat $ Prelude.concat (toString rgb)

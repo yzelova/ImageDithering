@@ -1,18 +1,22 @@
 module FileOperations where
 
+import Data.ByteString as BS
+import Data.Char
+import Data.Text
+import Data.Word8 as W8
+import Image
 import P1
 import P2
 import P3
 import P4
 import P5
 import P6
-import Data.ByteString as BS
-import Data.Char
-import Data.Text
-import Data.Word8 as W8
-import Image
 import ParsingOperations
-    ( parseNumber, trimWhiteSpace, skipWhiteSpace, word8ToDigit )
+  ( parseNumber,
+    skipWhiteSpace,
+    trimWhiteSpace,
+    word8ToDigit,
+  )
 
 parseMagicNumber :: ByteString -> (Int, ByteString)
 parseMagicNumber bStr = (magicNumber, skipWhiteSpace rest)
@@ -26,8 +30,7 @@ parseMagicNumber bStr = (magicNumber, skipWhiteSpace rest)
       | BS.head withSkippedP < _1 || BS.head withSkippedP > _6 = error "Invalid magic number"
       | otherwise = (word8ToDigit $ BS.head withSkippedP, BS.tail withSkippedP)
 
--- reading files
-loadImage :: String -> Prelude.IO [[Rgb]] 
+loadImage :: String -> Prelude.IO Image
 loadImage path = do
   text <- BS.readFile path
   let (magicNumber, restMN) = parseMagicNumber text
@@ -43,4 +46,39 @@ loadImage path = do
         | magicNumber == 4 = parseBinaryBlackWhite width height restC
         | magicNumber == 5 = parseBinaryGrayscale width height colors restC
         | magicNumber == 6 = parseBinaryRGB width height colors restC
-  return content
+        | otherwise = error "Invalid format"
+  return (Image magicNumber (fromIntegral width) (fromIntegral height) content colors)
+
+saveImage :: FilePath -> Image -> IO ()
+saveImage path img = do
+  let color
+        | format img == 1 || format img == 4 = ""
+        | otherwise = show (colors img) ++ "\n"
+  _ <- Prelude.writeFile path "P"
+  _ <- Prelude.appendFile path (show $ format img)
+  _ <- Prelude.appendFile path "\n"
+  _ <- Prelude.appendFile path (show $ width img)
+  _ <- Prelude.appendFile path " "
+  _ <- Prelude.appendFile path (show $ height img)
+  _ <- Prelude.appendFile path "\n"
+  _ <- Prelude.appendFile path color
+  _ <-
+    if format img == 1
+      then Prelude.appendFile path (toStringP1 (content img))
+      else
+        if format img == 2
+          then Prelude.appendFile path (toStringP2 (content img))
+          else
+            if format img == 3
+              then Prelude.appendFile path (toStringP3 (content img))
+              else
+                if format img == 4
+                  then BS.appendFile path (toByteStringP4 (width img) (content img))
+                  else
+                    if format img == 5
+                      then BS.appendFile path (toByteStringP5 (content img))
+                      else
+                        if format img == 6
+                          then BS.appendFile path (toByteStringP6 (content img))
+                          else error "Invalid format"
+  return ()

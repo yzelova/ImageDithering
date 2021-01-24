@@ -26,3 +26,13 @@ parsePlainTextGrayscale width height colors bStr =
             | Prelude.length  (getRows bStr) /= height = error "Invalid format"
             | otherwise = getRows bStr
     in rows
+
+toStringP2 :: [[Rgb]] -> String 
+toStringP2 rgb =
+    let rgbToString :: Rgb -> String 
+        rgbToString rgb 
+            | red rgb == green rgb &&  green rgb == blue rgb = show (red rgb) ++ "\n"
+            | otherwise = error "Invalid format"
+        toString :: [[Rgb]] -> [[String]]
+        toString = Prelude.map $ Prelude.map rgbToString
+    in Prelude.concat $ Prelude.concat (toString rgb)
