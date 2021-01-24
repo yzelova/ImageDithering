@@ -40,8 +40,14 @@ orderedDithering8 :: Image -> Image
 orderedDithering8 img = Image (format img) (width img) (height img) 
                                 (applyorderedDithering (width img) (height img) 0 0 orderedDithering8Matrix 8 (content img)) (colors img)                                
 
-test :: FilePath  -> FilePath  -> IO ()
-test input output = do
+executeBayer8 :: FilePath  -> FilePath  -> IO ()
+executeBayer8 input output = do
   image <- loadImage input
   let newImage = orderedDithering8 (grayscale image)
+  saveImage output newImage
+
+executeBayer4 :: FilePath  -> FilePath  -> IO ()
+executeBayer4 input output = do
+  image <- loadImage input
+  let newImage = orderedDithering4 (grayscale image)
   saveImage output newImage

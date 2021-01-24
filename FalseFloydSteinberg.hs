@@ -35,9 +35,8 @@ applyFalseFloydSteinsberg w h row col rgb
 falseFloydSteinberg :: Image -> Image
 falseFloydSteinberg img = Image (format img) (width img) (height img) (applyFalseFloydSteinsberg (width img) (height img) 0 0 (content img)) (colors img)
 
-
-test :: FilePath  -> FilePath  -> IO ()
-test input output = do
+execute :: FilePath -> FilePath  -> IO ()
+execute input output = do
   image <- loadImage input
   let newImage = falseFloydSteinberg (grayscale image)
   saveImage output newImage

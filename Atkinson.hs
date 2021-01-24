@@ -38,8 +38,8 @@ applyAtkinson w h row col rgb
 atkinson :: Image -> Image
 atkinson img = Image (format img) (width img) (height img) (applyAtkinson (width img) (height img) 0 0 (content img)) (colors img)
 
-test :: FilePath  -> FilePath  -> IO ()
-test input output = do
+execute :: FilePath -> FilePath  -> IO ()
+execute input output = do
   image <- loadImage input
   let newImage = atkinson (grayscale image)
   saveImage output newImage

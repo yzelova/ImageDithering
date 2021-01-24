@@ -44,9 +44,8 @@ applyJarvisJudiceNinke w h row col rgb
 jarvisJudiceNinke :: Image -> Image
 jarvisJudiceNinke img = Image (format img) (width img) (height img) (applyJarvisJudiceNinke (width img) (height img) 0 0 (content img)) (colors img)
 
-
-test :: FilePath -> FilePath -> IO ()
-test input output = do
+execute :: FilePath -> FilePath  -> IO ()
+execute input output = do
   image <- loadImage input
-  let newImage = jarvisJudiceNinke $ grayscale image
+  let newImage = jarvisJudiceNinke (grayscale image)
   saveImage output newImage

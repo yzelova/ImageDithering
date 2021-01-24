@@ -34,3 +34,9 @@ applySierra4 w h row col rgb
     
 sierra4 :: Image -> Image
 sierra4 img = Image (format img) (width img) (height img) (applySierra4 (width img) (height img) 0 0 (content img)) (colors img)
+
+execute :: FilePath -> FilePath  -> IO ()
+execute input output = do
+  image <- loadImage input
+  let newImage = sierra4 (grayscale image)
+  saveImage output newImage

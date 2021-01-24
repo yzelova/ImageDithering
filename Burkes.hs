@@ -38,3 +38,9 @@ applyBurkes w h row col rgb
     
 burkes :: Image -> Image
 burkes img = Image (format img) (width img) (height img) (applyBurkes (width img) (height img) 0 0 (content img)) (colors img)
+
+execute :: FilePath -> FilePath  -> IO ()
+execute input output = do
+  image <- loadImage input
+  let newImage = burkes (grayscale image)
+  saveImage output newImage
