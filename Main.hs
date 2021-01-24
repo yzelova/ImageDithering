@@ -10,7 +10,7 @@ import Algorithms.Sierra16 (execute)
 import Algorithms.Sierra32 (execute)
 import Algorithms.Sierra4 (execute)
 import Algorithms.Stucki (execute)
-import Control.Exception as Exc ( SomeException, catch )
+import Control.Exception as Exc (SomeException, catch)
 import Control.Monad (unless)
 
 algorithmNames :: String
