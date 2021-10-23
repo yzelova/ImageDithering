@@ -2,7 +2,7 @@
 ## Setup
 1. Install the [Word8](https://hackage.haskell.org/package/word8-0.1.3) library (used for processing ByteStrings)
 2. `ghc  Main.hs`
-3. The supported commands are showed when starting the application.
+3. The supported commands are shown when starting the application.
 
 ## Tests
 1. Install the [HUnit](https://hackage.haskell.org/package/HUnit) library
